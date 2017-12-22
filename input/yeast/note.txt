@@ -1,0 +1,17 @@
+expression.tsv is a file of tab-delimited values of RNA expression of the 2,577 samples measured on the GPL2529 platform in Saccharomyces cerevisiae. Rows represent genes, and columns represent conditions (samples).
+
+gold-standard.tsv is the Gold Standard of 1,403 transcriptional regulatory interactions used throughout the main text. Columns represent transcription factors, and rows represent target genes. A non-zero value represents an activation (1) or repression (-1) of the corresponding target to the corresponding gene.
+
+meta_data.tsv lists the meta data of the entire RNA expression dataset, in the Inferelator and InfereCLaDR format. Each row represents an expression sample (i.e. a condition), with the sixth (last) column (condName) displaying the name of the expression sample, second column (isTs) showing whether this sample is a part of a time series, third column (is1stLast) showing if this sample is first (f), middle (m), or last (l) in a time series that it's a part of (unless isTs==FALSE, in which case is1stLast=="e"), fourth column (prevCol) shows the name of the previous time point, and the fifth column (del.t) shows the amount of time elapsed (in minutes) from the previous measured time point, provided that this sample is a part of a time series and not the first element of it.
+
+meta_full_SC.tsv contains the full meta data of the RNA expression dataset, as downloaded from the GEO website. This is an expanded version of the meta_data.tsv file, and we used all of the words from this table for condition cluster enrichment analysis.
+
+tf_names.tsv lists all of the transcription factors used as potential regulators/predictors for our analysis.
+
+cluster-genes contains the lists of genes for each gene cluster, and the lists of enriched Gene Ontology terms for each gene cluster. See cluster-genes/note.txt for more detail.
+
+cluster-conditions contains the Inferelator/InfereCLaDR meta data files for each condition cluster. See cluster-conditions/note.txt for more detail.
+
+Collections-of-Interactions contains all collections of regulatory interactions employed in this study, as well as combinations of some of them, as listed in Figure S3.
+
+GO-gene-lists contains files with the gene names of translation genes and nucleobase-containing small molecule (NCSM) metabolism genes. See GO-gene-lists/note.txt for more detail.

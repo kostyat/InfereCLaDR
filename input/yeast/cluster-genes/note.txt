@@ -1,0 +1,9 @@
+Files named "genes_clust#", where # is 1-5, list the names of the genes contained in each gene cluster. They correspond to the following labels in the text:
+
+genes_clust1: "nucleic acid metabolism"
+genes_clust2: "translation"
+genes_clust3: "cell wall biogenesis"
+genes_clust4: "no enrichment"
+genes_clust5: "protein catabolism"
+
+Files named "clust_#-GO", where # is 1-5, list Gene Ontology enrichments for each cluster. The listed p-values are pre-multiple-hypothesis-correction.

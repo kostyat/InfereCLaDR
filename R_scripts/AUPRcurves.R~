@@ -1,0 +1,53 @@
+source("R_scripts/evaluate.R")
+
+plot.auprs <- function(in.dir, out.dir, length.out = 100000) {
+  params.and.input <- paste(in.dir, 'params_and_input.RData', sep='/')
+  if (!file.exists(params.and.input)) {
+    cat('No params_and_input.RData - skipping', full.dir, '\n')
+    return()
+  }
+  load(params.and.input)
+  
+  files <- list.files(in.dir, "combinedconf_.+\\.RData$")
+  print(file.path(in.dir, files))
+  
+  gs <- IN$gs.mat
+  file.name = paste(file.path(out.dir),strsplit(in.dir,"/")[length(strsplit(in.dir,"/"))],".pdf",sep="")
+  pdf(file.name, height=15, width=15, paper="a4")
+  for (res.file in files) {
+    load(file.path(full.dir, res.file))
+    if(PARS$deg.rates) {
+      comb.confs = comb.confs[,-1]
+    }
+    rows <- rep(TRUE, nrow(gs))
+    cols <- rep(TRUE, ncol(gs))
+    if(PARS$eval.on.subset) {
+      rows <- apply(gs, 1, sum) > 0
+      cols <- apply(gs, 2, sum) > 0
+    }
+    PR = ChristophsPR(order(comb.confs[rows,cols], decreasing=T), gs[rows,cols])
+    prec = PR$prec
+    rec = PR$rec
+    plot(rec[seq(1, length(rec), length.out=length.out)], prec[seq(1, length(rec), length.out=length.out)], pch=".", main = c("AUPR=", PR$auc))#and same input with "lines"
+    lines(rec[seq(1, length(rec), length.out=length.out)], prec[seq(1, length(rec), length.out=length.out)], pch=".")
+    if(PARS$perc.tp < 100) {
+      gs.lo = IN$gs - abs(IN$priors[[which(res.file %in% files)]])
+      PR = ChristophsPR(order(comb.confs[rows,cols], decreasing=T), gs.lo[rows,cols])
+      prec = PR$prec
+      rec = PR$rec
+      plot(rec[seq(1, length(rec), length.out=length.out)], prec[seq(1, length(rec), length.out=length.out)], pch=".", main = c("AUPR=", PR$auc))#and same input with "lines"
+      lines(rec[seq(1, length(rec), length.out=length.out)], prec[seq(1, length(rec), length.out=length.out)], pch=".")
+    }
+  } 
+}
+      
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) == 1) {
+  in.dir <- args[1]
+}
+if (length(args) == 2) {
+  in.dir <- args[1]
+  out.dir <- args[2]
+}
+
+plot.auprs(in.dir, out.dir)

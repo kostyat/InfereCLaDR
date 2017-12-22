@@ -1,0 +1,8 @@
+These files list the meta data for the 4 condition clusters, including the names of conditions contained in each cluster. They correspond to the following labels in the text:
+
+Cluster 1: "chemostat"
+Cluster 2: "transcription inhibition"
+Cluster 3: "mid-log phase growth"
+Cluster 4: "fermentation"
+
+Each row represents an expression sample (i.e. a condition), with the sixth (last) column (condName) displaying the name of the expression sample, second column (isTs) showing whether this sample is a part of a time series, third column (is1stLast) showing if this sample is first (f), middle (m), or last (l) in a time series that it's a part of (unless isTs==FALSE, in which case is1stLast=="e"), fourth column (prevCol) shows the name of the previous time point, and the fifth column (del.t) shows the amount of time elapsed (in minutes) from the previous measured time point, provided that this sample is a part of a time series and not the first element of it.
