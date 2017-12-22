@@ -1,7 +1,6 @@
 #!/bin/bash
 
 namedir=yeast/example
-jobname=jobs/yeast_affy_tauNULL.R
 nCondClusts=4 #number of condition clusters
 nGeneClusts=5 #number of gene clusters
 clustNamesPaper=TRUE #if TRUE, the same names are given to clusters as in the InfereCLaDR paper, if FALSE, no gene and condition cluster names are given
@@ -10,7 +9,7 @@ mkdir -p output/$namedir/
 
 cp inferelator.R output/$namedir/
 mkdir output/$namedir/jobs
-cp $jobname output/$namedir/jobs
+cp -r jobs/ output/$namedir/
 cp -r R_scripts output/$namedir/
 cp infer-final-network.sh output/$namedir/
 
