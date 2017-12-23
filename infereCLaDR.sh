@@ -1,9 +1,9 @@
 #!/bin/bash
 
-namedir=yeast/example
-nCondClusts=4 #number of condition clusters
-nGeneClusts=5 #number of gene clusters
-clustNamesPaper=TRUE #if TRUE, the same names are given to clusters as in the InfereCLaDR paper, if FALSE, no gene and condition cluster names are given
+namedir=$1 #name of the output directory; for example: yeast/example
+nCondClusts=$2 #number of condition clusters; should be 4 to recreate the InfereCLaDR paper
+nGeneClusts=$3 #number of gene clusters; should be 5 to recreate the InfereCLaDR paper
+clustNamesPaper=$4 #if TRUE, the same names are given to clusters as in the InfereCLaDR paper, if FALSE, no gene and condition cluster names are given
 
 mkdir -p output/$namedir/
 
